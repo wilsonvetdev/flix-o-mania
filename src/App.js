@@ -14,16 +14,20 @@ function App() {
 
   const doSearch = input => setQuery(input)
 
+  const searchMovies = query => {
+      axios.get('https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup', {
+        params: {term: query},
+        headers: {
+          'x-rapidapi-key': process.env.REACT_APP_MOVIE_API_KEY,
+          'x-rapidapi-host': 'utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com'
+        }
+      })
+      .then(response => setData(response.data))
+      .catch(error => console.error('Error fetching and parsing data', error))
+  }
+
   useEffect(() => {
-    axios.request({method: 'GET',
-    url: 'https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup',
-    params: {term: query},
-    headers: {
-      'x-rapidapi-key': process.env.REACT_APP_MOVIE_API_KEY,
-      'x-rapidapi-host': 'utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com'
-    }}) 
-    .then(response => setData(response.data))
-    .catch(error => console.log('Error fetching and parsing data', error))
+    searchMovies(query)
   }, [query])
 
   const singleMovie = (routerProps) => {

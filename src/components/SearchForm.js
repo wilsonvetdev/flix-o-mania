@@ -11,14 +11,11 @@ const SearchForm = props => {
     }
 
     const handleSubmit = (e) => {
-        debugger
         e.preventDefault()
         props.onSearch(input)
         e.currentTarget.reset()
         props.history.push('/movies')
     }
-
-    console.log('search form inside', props)
 
     return (
         <form className="search-form" onSubmit={handleSubmit}>
