@@ -6,6 +6,7 @@ import axios from 'axios'
 import SearchForm from './components/SearchForm'
 import MovieList from './components/MovieList'
 import Movie from './components/Movie'
+import Landing from './components/Landing'
 
 function App() {
 
@@ -49,9 +50,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Flix-O-Mania</h1>
+      <h1><Link to='/'>Flix-O-Mania</Link></h1>
       <SearchForm onSearch={doSearch} />
-
       <Switch>
           <Route path='/movies' render={movieList} exact />
           <Route path='/movies/:id' render={singleMovie} />

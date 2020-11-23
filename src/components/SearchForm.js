@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom'
 
-function SearchForm(props) {
+const SearchForm = props => {
     const [input, setInputValue] = useState('')
 
     const handleChange = (e) => { 
@@ -11,6 +11,7 @@ function SearchForm(props) {
     }
 
     const handleSubmit = (e) => {
+        debugger
         e.preventDefault()
         props.onSearch(input)
         e.currentTarget.reset()
