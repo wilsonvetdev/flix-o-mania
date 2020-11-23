@@ -1,9 +1,9 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 
 function SearchForm(props) {
     const [input, setInputValue] = useState('')
 
-    const onSearchChange = (e) => { 
+    const handleChange = (e) => { 
         // Update state 
         e.persist()
         setInputValue(e.target.value)
@@ -19,7 +19,7 @@ function SearchForm(props) {
         <form className="search-form" onSubmit={handleSubmit}>
         <label className="is-hidden" htmlFor="search">Search</label>
         <input type="search"
-            // onChange={onSearchChange}
+            onChange={handleChange}
             name="search"
             placeholder="Search..."
         />
