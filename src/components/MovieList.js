@@ -1,14 +1,22 @@
 import React from 'react'
 import Movie from './Movie'
+import { Link } from 'react-router-dom'
 
 const MovieList = props => {
 
     const data = props.data 
     let movies;
+
     if(data.results) {
         movies = data.results.map(movie => {
             console.log(movie)
-            return <Movie key={movie.id} movieObj={movie} />
+            return (
+                <div key={movie.id}>
+                    <Link to={`/movies/${movie.id}`}>
+                        <Movie movieObj={movie} />
+                    </Link>
+                </div>
+            )
         })
     } else {
         console.log('no movies here yet')

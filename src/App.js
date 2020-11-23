@@ -1,9 +1,11 @@
 import './App.css'
 import React, { useState, useEffect } from 'react'
+import { Link, Switch, Route } from 'react-router-dom'
 import axios from 'axios'
 
 import SearchForm from './components/SearchForm'
 import MovieList from './components/MovieList'
+import Movie from './components/Movie'
 
 function App() {
 
@@ -28,14 +30,32 @@ function App() {
     .catch(error => console.log('Error fetching and parsing data', error))
   }, [query])
 
+  const singleMovie = (routerProps) => {
+    let movie_id = routerProps.match.params.id
+    let foundMovie = data.results.find(movie => movie.id === movie_id)
+
+    if(foundMovie) {
+      return <Movie {...routerProps} movieObj={foundMovie} />
+    } else {
+      console.log('no such movie here')
+    }
+  }
+
+  const movieList = () => {
+    if(data) {
+      return <MovieList data={data} />
+    }
+  }
+
   return (
     <div className="App">
       <h1>Flix-O-Mania</h1>
       <SearchForm onSearch={doSearch} />
 
-      <div>
-        <MovieList data={data} />
-      </div>
+      <Switch>
+          <Route path='/movies' render={movieList} exact />
+          <Route path='/movies/:id' render={singleMovie} />
+      </Switch>
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom'
 
 function SearchForm(props) {
     const [input, setInputValue] = useState('')
@@ -13,7 +14,10 @@ function SearchForm(props) {
         e.preventDefault()
         props.onSearch(input)
         e.currentTarget.reset()
+        props.history.push('/movies')
     }
+
+    console.log('search form inside', props)
 
     return (
         <form className="search-form" onSubmit={handleSubmit}>
@@ -28,4 +32,4 @@ function SearchForm(props) {
     )
 }
 
-export default SearchForm
+export default withRouter(SearchForm)
