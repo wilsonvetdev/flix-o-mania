@@ -41,9 +41,9 @@ function App() {
     }
   }
 
-  const movieList = () => {
+  const movieList = (routerProps) => {
     if(data) {
-      return <MovieList movies={data} />
+      return <MovieList routerProps={routerProps} movies={data} />
     }
   }
 

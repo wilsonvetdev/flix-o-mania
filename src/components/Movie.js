@@ -11,8 +11,14 @@ const Movie = props => {
         try {
             let response = await axios.get(`https://api.themoviedb.org/3/configuration?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`)
             const { base_url, poster_sizes, profile_sizes, backdrop_sizes, still_sizes } = response.data.images
-            let profilePic = base_url + 'w500' + poster_path
-            setUrl(profilePic)
+            let poster;
+            if(props.location.pathname === '/movies') {
+                poster = base_url + 'w154' + poster_path
+                setUrl(poster)
+            } else {
+                poster = base_url + 'w342' + poster_path
+                setUrl(poster)
+            }
         } catch(error) {
             console.error('Error fetching and parsing data', error)
         }
@@ -37,8 +43,8 @@ const Movie = props => {
         {
             props.movieObj ? 
             <li>
-                <p>{ title } </p>
                 <img src={url} alt={title} />
+                { props.location.pathname !== '/movies' ? <p>{ overview }</p> : null}
             </li>
             :
             <h1>nothing here</h1>

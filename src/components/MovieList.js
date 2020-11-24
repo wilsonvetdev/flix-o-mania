@@ -21,11 +21,11 @@ const MovieList = props => {
     let movies;
     if(props.movies) {
         movies = props.movies.map(movie => {
-            console.log(movie)
+            console.log(props)
             return (
                 <div key={movie.id}>
                     <Link to={`/movies/${movie.id}`}>
-                        <Movie movieObj={movie} />
+                        <Movie {...props.routerProps} movieObj={movie} />
                     </Link>
                 </div>
             )
