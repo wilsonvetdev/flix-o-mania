@@ -3,12 +3,24 @@ import Movie from './Movie'
 import { Link } from 'react-router-dom'
 
 const MovieList = props => {
-
-    const data = props.data 
+    // adult: false
+    // backdrop_path: "/q5uZqd324Tug2xWxL72j18ZzK2Z.jpg"
+    // genre_ids: (3) [35, 16, 12]
+    // id: 315064
+    // original_language: "en"
+    // original_title: "Animal Crackers"
+    // overview: "A family must use a magical box of Animal Crackers to save a rundown circus from being taken over by their evil uncle Horatio P. Huntington."
+    // popularity: 22.285
+    // poster_path: "/dxFqZiO5MqqVoFZuWOjTdjmDh6d.jpg"
+    // release_date: "2017-06-12"
+    // title: "Animal Crackers"
+    // video: false
+    // vote_average: 6.4
+    // vote_count: 99
+    console.log(props.movies)
     let movies;
-
-    if(data.results) {
-        movies = data.results.map(movie => {
+    if(props.movies) {
+        movies = props.movies.map(movie => {
             console.log(movie)
             return (
                 <div key={movie.id}>
