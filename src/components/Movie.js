@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
-import { Segment, Container } from 'semantic-ui-react'
+import { Segment, Container, Grid, Image, Card } from 'semantic-ui-react'
+import defaultImg from '../defaultImg.png'
 
 const Movie = props => {
 
@@ -12,11 +13,14 @@ const Movie = props => {
             let response = await axios.get(`https://api.themoviedb.org/3/configuration?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`)
             const { base_url, poster_sizes, profile_sizes, backdrop_sizes, still_sizes } = response.data.images
             let poster;
-            if(props.location.pathname === '/movies') {
-                poster = base_url + 'w154' + poster_path
+            if(props.location.pathname === '/movies' && poster_path !== null) {
+                poster = base_url + 'w342' + poster_path
+                setUrl(poster)
+            } else if( poster_path !== null) {
+                poster = base_url + 'w342' + poster_path
                 setUrl(poster)
             } else {
-                poster = base_url + 'w342' + poster_path
+                poster = defaultImg 
                 setUrl(poster)
             }
         } catch(error) {
@@ -42,10 +46,16 @@ const Movie = props => {
         <>
         {
             props.movieObj ? 
-            <div>
-            <img src={url} alt={title} />
-            { props.location.pathname !== '/movies' ? <p>{ overview }</p> : null }
-            </div>
+            <Card>
+                    <Image src={url} alt={title} wrapped ui={false} />
+                    <Card.Content>
+                        <Card.Header>{title}</Card.Header>
+                        <Card.Meta>
+                            <span>Popularity: {popularity}</span>
+                        </Card.Meta>
+                    </Card.Content>
+                    {/* { props.location.pathname !== '/movies' ? <p>{ overview }</p> : null } */}
+            </Card>
             :
             <h1>nothing here</h1>
         }

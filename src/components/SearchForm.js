@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom'
+import { Form, Grid, Button } from 'semantic-ui-react'
 
 const SearchForm = props => {
     const [input, setInputValue] = useState('')
@@ -17,15 +18,19 @@ const SearchForm = props => {
         props.history.push('/movies')
     }
 
+    const goToResults = (event) => {
+        props.history.push('/movies')
+    } 
+
     return (
-        <form onSubmit={handleSubmit}>
-        <input type="search"
+        <Form onSubmit={handleSubmit}>
+        <Form.Input type="search"
             onChange={handleChange}
             name="search"
             placeholder="Search for movies..."
         />
-        <button type="submit" id="submit">search</button>
-        </form>
+        <Button onClick={goToResults} type="submit" id="submit">search</Button>
+        </Form>
     )
 }
 

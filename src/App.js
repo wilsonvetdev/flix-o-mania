@@ -2,7 +2,7 @@ import './App.css'
 import React, { useState, useEffect } from 'react'
 import { Link, Switch, Route } from 'react-router-dom'
 import axios from 'axios'
-import { Segment, Container, Grid } from 'semantic-ui-react'
+import { Segment, Container, Grid, Button } from 'semantic-ui-react'
 
 import SearchForm from './components/SearchForm'
 import MovieList from './components/MovieList'
@@ -30,7 +30,6 @@ function App() {
     }
   }
 
-
   const singleMovie = (routerProps) => {
     let movie_id = routerProps.match.params.id
     let foundMovie = data.find(movie => movie.id === parseInt(movie_id))
@@ -49,11 +48,13 @@ function App() {
   }
 
   return (
-    <Segment>
-      {/* <Grid> */}
+    <Segment textAlign='center'>
       <h1><Link to='/'>Flix-O-Mania</Link></h1>
+      <br></br>
+      <Grid textAlign='center'>
       <SearchForm onSearch={doSearch} />
-      {/* </Grid> */}
+      </Grid>
+      <br></br>
       <Switch>
           <Route path='/movies' render={movieList} exact />
           <Route path='/movies/:id' render={singleMovie} />
