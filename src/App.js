@@ -2,6 +2,7 @@ import './App.css'
 import React, { useState, useEffect } from 'react'
 import { Link, Switch, Route } from 'react-router-dom'
 import axios from 'axios'
+import { Segment, Container, Grid } from 'semantic-ui-react'
 
 import SearchForm from './components/SearchForm'
 import MovieList from './components/MovieList'
@@ -48,14 +49,16 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <Segment>
+      {/* <Grid> */}
       <h1><Link to='/'>Flix-O-Mania</Link></h1>
       <SearchForm onSearch={doSearch} />
+      {/* </Grid> */}
       <Switch>
           <Route path='/movies' render={movieList} exact />
           <Route path='/movies/:id' render={singleMovie} />
       </Switch>
-    </div>
+    </Segment>
   )
 }
 

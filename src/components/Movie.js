@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
-
+import { Segment, Container } from 'semantic-ui-react'
 
 const Movie = props => {
-    // debugger
+
     const [url, setUrl] = useState('')
     const { id, title, poster_path, backdrop_path, overview, release_date, popularity } = props.movieObj
 
@@ -42,10 +42,10 @@ const Movie = props => {
         <>
         {
             props.movieObj ? 
-            <li>
-                <img src={url} alt={title} />
-                { props.location.pathname !== '/movies' ? <p>{ overview }</p> : null}
-            </li>
+            <div>
+            <img src={url} alt={title} />
+            { props.location.pathname !== '/movies' ? <p>{ overview }</p> : null }
+            </div>
             :
             <h1>nothing here</h1>
         }

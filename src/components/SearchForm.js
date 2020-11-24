@@ -4,28 +4,27 @@ import { withRouter } from 'react-router-dom'
 const SearchForm = props => {
     const [input, setInputValue] = useState('')
 
-    const handleChange = (e) => { 
+    const handleChange = (event) => { 
         // Update state 
-        e.persist()
-        setInputValue(e.target.value)
+        event.persist()
+        setInputValue(event.target.value)
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const handleSubmit = (event) => {
+        event.preventDefault()
         props.onSearch(input)
-        e.currentTarget.reset()
+        event.currentTarget.reset()
         props.history.push('/movies')
     }
 
     return (
-        <form className="search-form" onSubmit={handleSubmit}>
-        <label className="is-hidden" htmlFor="search">Search</label>
+        <form onSubmit={handleSubmit}>
         <input type="search"
             onChange={handleChange}
             name="search"
-            placeholder="Search..."
+            placeholder="Search for movies..."
         />
-        <button type="submit" id="submit" className="search-button"><i className="material-icons icn-search">search</i></button>
+        <button type="submit" id="submit">search</button>
         </form>
     )
 }
