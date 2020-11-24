@@ -33,7 +33,6 @@ function App() {
   const singleMovie = (routerProps) => {
     let movie_id = routerProps.match.params.id
     let foundMovie = data.find(movie => movie.id === parseInt(movie_id))
-    debugger
 
     if(foundMovie) {
       return <Movie {...routerProps} movieObj={foundMovie} />

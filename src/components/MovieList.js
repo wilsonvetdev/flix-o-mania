@@ -17,7 +17,7 @@ const MovieList = props => {
     // video: false
     // vote_average: 6.4
     // vote_count: 99
-    console.log(props.movies)
+    
     let movies;
     if(props.movies) {
         movies = props.movies.map(movie => {
