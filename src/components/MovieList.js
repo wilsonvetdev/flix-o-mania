@@ -23,7 +23,7 @@ const MovieList = props => {
         <Segment inverted>
         {
             props.movies.length ?
-            <Grid container>
+            <Grid container textAlign='center' stackable>
             <h1>Movies Found</h1>
                 <Grid.Row columns={4}>
                     { movies }
