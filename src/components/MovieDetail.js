@@ -75,12 +75,12 @@ const MovieDetail = (props) => {
     }
 
     return(
-        <Grid columns='equal' inverted container padded relaxed stackable>
+        <Grid columns='equal' inverted container padded stackable>
             <Grid.Row color='black' textAlign='center'>
                 <Grid.Column width={6}>
                 <Segment inverted color='black'>
-                <Card>
-                    <Image src={url} />
+                <Card style={{margin: '1rem'}}>
+                    <Image src={url} fluid />
                 </Card>
                 </Segment>
                 </Grid.Column>

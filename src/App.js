@@ -4,6 +4,7 @@ import { Link, Switch, Route } from 'react-router-dom'
 import axios from 'axios'
 import { Container, Grid, Header } from 'semantic-ui-react'
 
+
 import SearchForm from './components/SearchForm'
 import MovieList from './components/MovieList'
 import MovieDetail from './components/MovieDetail'
