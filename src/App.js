@@ -2,11 +2,12 @@ import './App.css'
 import React, { useState, useEffect } from 'react'
 import { Link, Switch, Route } from 'react-router-dom'
 import axios from 'axios'
-import { Segment, Container, Grid, Button } from 'semantic-ui-react'
+import { Segment, Container, Grid, Button, Header } from 'semantic-ui-react'
 
 import SearchForm from './components/SearchForm'
 import MovieList from './components/MovieList'
 import Movie from './components/Movie'
+import MovieDetail from './components/MovieDetail'
 
 function App() {
   const API_KEY = process.env.REACT_APP_MOVIE_API_KEY
@@ -35,7 +36,7 @@ function App() {
     let foundMovie = data.find(movie => movie.id === parseInt(movie_id))
 
     if(foundMovie) {
-      return <Movie {...routerProps} movieObj={foundMovie} />
+      return <MovieDetail {...routerProps} movieObj={foundMovie} />
     } else {
       console.log('no such movie here')
     }
@@ -48,8 +49,8 @@ function App() {
   }
 
   return (
-    <Segment textAlign='center'>
-      <h1><Link to='/'>Flix-O-Mania</Link></h1>
+    <Container id='app-container' textAlign='center' inverted >
+      <Header as='h1' style={{padding: '1rem'}}><Link style={{color: 'black'}} to='/'>Flix-O-Mania</Link></Header>
       <br></br>
       <Grid textAlign='center'>
       <SearchForm onSearch={doSearch} />
@@ -59,7 +60,7 @@ function App() {
           <Route path='/movies' render={movieList} exact />
           <Route path='/movies/:id' render={singleMovie} />
       </Switch>
-    </Segment>
+    </Container>
   )
 }
 
