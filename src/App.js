@@ -25,6 +25,7 @@ function App() {
       try {
         let response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`)
         setData(response.data.results)
+        console.log(data)
       } catch(error) {
         console.error('Error fetching and parsing data', error)
       }

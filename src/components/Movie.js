@@ -27,7 +27,7 @@ const Movie = props => {
             console.error('Error fetching and parsing data', error)
         }
     }
-
+    
     useEffect(() => {
         getImg()
     })
