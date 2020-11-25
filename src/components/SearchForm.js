@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom'
-import { Form, Grid, Button } from 'semantic-ui-react'
+import { Form, Button } from 'semantic-ui-react'
 
 const SearchForm = props => {
     const [input, setInputValue] = useState('')

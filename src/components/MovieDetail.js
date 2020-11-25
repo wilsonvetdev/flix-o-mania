@@ -42,12 +42,15 @@ const MovieDetail = (props) => {
 
     useEffect(() => {
         getImg()
+    })
+
+    useEffect(() => {
         getLikes()
-    }, [likes, dislikes])
+    })
 
     const handleLike = async(event) => {
         if(event.target.id === 'like-button'){
-            try{
+            try {
                 let response = await axios.post('http://localhost:3000/movies', {
                     movie_id: id,
                     name: title,
@@ -58,12 +61,13 @@ const MovieDetail = (props) => {
                 console.error('Error fetching and parsing data from Rails API', error)
             }
         } else {
-            try{
-                let response = await axios.post('http://localhost:3000/movies', {
+            try {
+                let response = await axios.post('http://localhost:3000/movies/dislike', {
                     movie_id: id,
                     name: title,
+                    dislike: 1
                 })
-                console.log(response.data)
+                setDislikes(response.data.dislike)
             } catch(error) {
                 console.error('Error fetching and parsing data from Rails API', error)
             }

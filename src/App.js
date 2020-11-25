@@ -2,11 +2,10 @@ import './App.css'
 import React, { useState, useEffect } from 'react'
 import { Link, Switch, Route } from 'react-router-dom'
 import axios from 'axios'
-import { Segment, Container, Grid, Button, Header } from 'semantic-ui-react'
+import { Container, Grid, Header } from 'semantic-ui-react'
 
 import SearchForm from './components/SearchForm'
 import MovieList from './components/MovieList'
-import Movie from './components/Movie'
 import MovieDetail from './components/MovieDetail'
 
 function App() {
