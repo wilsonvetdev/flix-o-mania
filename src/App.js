@@ -49,7 +49,7 @@ function App() {
   }
 
   return (
-    <Container id='app-container' textAlign='center' inverted >
+    <Container id='app-container' textAlign='center'>
       <Header as='h1' style={{padding: '1rem'}}><Link style={{color: 'black'}} to='/'>Flix-O-Mania</Link></Header>
       <br></br>
       <Grid textAlign='center'>

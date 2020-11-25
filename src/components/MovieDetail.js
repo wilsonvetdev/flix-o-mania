@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
-import { Segment, Grid, Image, Card, Button, Header, Icon } from 'semantic-ui-react'
+import { Segment, Grid, Image, Card, Button, Header} from 'semantic-ui-react'
 import defaultImg from '../defaultImg.png'
 
 const MovieDetail = (props) => {
 
     const [url, setUrl] = useState('')
-    const [liked, setLike] = useState(false)
-    const { id, title, poster_path, backdrop_path, overview, release_date, popularity } = props.movieObj
+    const [likes, setLikes] = useState(0) 
+    const [dislikes, setDislikes] = useState(0) 
+    const { id, title, poster_path, overview, release_date } = props.movieObj
 
     const getImg = async() => {
         try {
             let response = await axios.get(`https://api.themoviedb.org/3/configuration?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`)
-            const { base_url, poster_sizes, profile_sizes, backdrop_sizes, still_sizes } = response.data.images
+            const { base_url } = response.data.images
             let poster;
             if(props.location.pathname === '/movies' && poster_path !== null) {
                 poster = base_url + 'w342' + poster_path
@@ -29,9 +30,45 @@ const MovieDetail = (props) => {
         }
     }
 
+    const getLikes = async() => {
+        try {
+            let response = await axios.get(`http://localhost:3000/movies/${id}`)
+            setLikes(response.data.like)
+            setDislikes(response.data.dislike)
+        } catch(error) {
+            console.error(error)
+        }
+    }
+
     useEffect(() => {
         getImg()
-    })
+        getLikes()
+    }, [likes, dislikes])
+
+    const handleLike = async(event) => {
+        if(event.target.id === 'like-button'){
+            try{
+                let response = await axios.post('http://localhost:3000/movies', {
+                    movie_id: id,
+                    name: title,
+                    like: 1
+                })
+                setLikes(response.data.likes)
+            } catch(error) {
+                console.error('Error fetching and parsing data from Rails API', error)
+            }
+        } else {
+            try{
+                let response = await axios.post('http://localhost:3000/movies', {
+                    movie_id: id,
+                    name: title,
+                })
+                console.log(response.data)
+            } catch(error) {
+                console.error('Error fetching and parsing data from Rails API', error)
+            }
+        }
+    }
 
     return(
         <Grid columns='equal' inverted container padded relaxed stackable>
@@ -49,8 +86,9 @@ const MovieDetail = (props) => {
                     <Header as='h5'>Released: {release_date}</Header>
                     <Header as='h5'>Overview:</Header>
                     <p>{overview}</p>
-                    <Button icon onClick={() => setLike(!liked)} color={liked ? 'green' : null}><Icon name='thumbs up' /></Button>
-                    <Button icon onClick={() => setLike(!liked)} color={!liked ? 'red' : null}><Icon name='thumbs down' /></Button>
+                    <p>Likes: {likes}</p><p>Dislikes: {dislikes}</p>
+                    <Button id='like-button' onClick={handleLike} color='green'>Like</Button>
+                    <Button id='dislike-button' onClick={handleLike} color='red'>Dislike</Button>
                 </Segment>
                 </Grid.Column>
             </Grid.Row>

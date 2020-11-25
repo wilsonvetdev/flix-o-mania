@@ -6,7 +6,7 @@ import defaultImg from '../defaultImg.png'
 const Movie = props => {
 
     const [url, setUrl] = useState('')
-    const { id, title, poster_path, backdrop_path, overview, release_date, popularity } = props.movieObj
+    const { title, poster_path, popularity } = props.movieObj
 
     const getImg = async() => {
         try {
@@ -26,21 +26,11 @@ const Movie = props => {
         } catch(error) {
             console.error('Error fetching and parsing data', error)
         }
-        // {
-        // backdrop_sizes: (4) ["w300", "w780", "w1280", "original"]
-        // base_url: "http://image.tmdb.org/t/p/"
-        // logo_sizes: (7) ["w45", "w92", "w154", "w185", "w300", "w500", "original"]
-        // poster_sizes: (7) ["w92", "w154", "w185", "w342", "w500", "w780", "original"]
-        // profile_sizes: (4) ["w45", "w185", "h632", "original"]
-        // secure_base_url: "https://image.tmdb.org/t/p/"
-        // still_sizes: (4) ["w92", "w185", "w300", "original"]
-        // }
     }
 
     useEffect(() => {
         getImg()
     })
-
 
     return (
         <>
@@ -54,7 +44,6 @@ const Movie = props => {
                             <span>Popularity: {popularity}</span>
                         </Card.Meta>
                     </Card.Content>
-                    {/* { props.location.pathname !== '/movies' ? <p>{ overview }</p> : null } */}
             </Card>
             :
             <h1>nothing here</h1>
