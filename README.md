@@ -1,7 +1,7 @@
 # Flix-O-Mania
 
 This is a side project I did to practice using hooks since it is best practice now compared to using class components. 
-The single page application allows a user to search for a movie with the search field, and also allows a user to increase likes or dislikes.
+The single page application allows a user to search for a movie with the search field, and also allows a user to increase likes or dislikes. The application took advantage of media breakpoints with Semantic UI to allow the app to look good on both desktop and mobile phone.
 
 ![flixomania gif](https://github.com/wilsonvetdev/flix-o-mania-api/blob/main/flixomania.gif)
 
