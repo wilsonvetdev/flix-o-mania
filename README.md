@@ -25,6 +25,9 @@ Note - this app requires a backend server and you can go here to get it set up -
 3. Run $ npm install -> installs required dependencies
 4. Run $ npm start -> starts a server and the app should launch 
 
+# Data Source
+https://www.themoviedb.org/
+
 # Known Issues(tracking)
 1. Front-end - Memory leak warning pops up in the console when I do different searches too quickly(?) - Not sure if that's the root cause, but definitely need to do deeper dive into React hooks.
 
