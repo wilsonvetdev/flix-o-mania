@@ -29,5 +29,5 @@ Note - this app requires a backend server and you can go here to get it set up -
 https://www.themoviedb.org/
 
 # Known Issues(tracking)
-1. Front-end - Memory leak warning pops up in the console when I do different searches too quickly(?) - Not sure if that's the root cause, but definitely need to do deeper dive into React hooks.
+1. Front-end - Memory leak warning pops up in the console when I do different searches too quickly(?) - Not sure what's the root cause, but definitely need to do deeper dive into React hooks.
 
